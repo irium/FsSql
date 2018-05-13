@@ -1,7 +1,17 @@
 source https://api.nuget.org/v3/index.json
 storage:none
 
-nuget FSharp.Core 4.3.4
+nuget FSharp.Core
+nuget System.Data.SqlClient
+nuget System.Data.SQLite
+nuget System.ValueTuple >= 4.5.0 rc
+nuget FSharp.Collections.ParallelSeq
+nuget FSharpx.Collections
+clitool Microsoft.DotNet.Watcher.Tools
+nuget Microsoft.NETCore.App 2.0.0
+nuget Expecto
+nuget YoloDev.Expecto.TestSdk
+nuget Microsoft.NET.Test.Sdk
 
 group build
   source https://api.nuget.org/v3/index.json

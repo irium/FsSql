@@ -24,10 +24,5 @@
     <Compile Include="FsSqlOperators.fs" />
     <Compile Include="SqlWrapper.fs" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="System.Data.SqlClient" Version="4.4.2" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Update="FSharp.Core" Version="4.3.0" />
-  </ItemGroup>
+  <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

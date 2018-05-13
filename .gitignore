@@ -10,7 +10,9 @@ packages/*
 *.nupkg
 FsSql.userprefs
 *.exe
+!.paket/*.exe
 *.sln.ide
-.fake/*
+.fake/
 paket.restore.cached
-paket-files/*
+paket-files/
+packages/
