@@ -3,7 +3,6 @@ module Sql
 open System
 open System.Collections.Generic
 open System.Data
-open System.Data.SqlClient
 open System.Reflection
 open System.Text.RegularExpressions
 open Microsoft.FSharp.Reflection
@@ -92,22 +91,34 @@ let internal PrintfFormatProc (worker: string * obj list -> 'd)  (query: PrintfF
         let handler = proc types []
         unbox (FSharpValue.MakeFunction(typeof<'a>, handler))
 
+// https://docs.microsoft.com/fr-fr/dotnet/framework/data/adonet/configuring-parameters-and-parameter-data-types#working-with-parameter-placeholders
+// returns a tuple (formatter for SQL, formatter for param name in the map)
+let internal getParameterPlaceholderFormatters (conn:IDbConnection) =
+    match conn.GetType().FullName with
+    | "Oracle.ManagedDataAccess.Client.OracleConnection" -> 
+        (fun _ -> sprintf ":%s"), fun _ -> id
+    | _ -> 
+        let formatter _ = sprintf "@%s"
+        formatter, formatter
+
 let internal sqlProcessor (cmgr: ConnectionManager) (withCmd: IDbCommand -> IDbConnection -> 'a) (sql: string, values: obj list) =
-    let stripFormatting s =
-        let i = ref -1
-        let eval (rxMatch: Match) =
-            incr i
-            sprintf "@p%d" !i
-        Regex.Replace(s, "%.", eval)
-    let sql = stripFormatting sql
     let sqlProcessor' (conn: IDbConnection) =
+        let (formatterForSQL, formatterForMap) = getParameterPlaceholderFormatters conn
+        let positionalParameterName = sprintf "p%d"
+        let stripFormatting s =
+            let i = ref -1
+            let eval _ =
+                incr i
+                let ri = !i in formatterForSQL ri (positionalParameterName ri)
+            Regex.Replace(s, "%.", eval)
+        let sql = stripFormatting sql
         use cmd = conn.CreateCommand()
         cmd.CommandText <- sql
         cmd.Transaction <- Option.getOrDefault cmgr.tx
         let createParam i (p: obj) =
             let param = cmd.CreateParameter()
             //param.DbType <- DbType.
-            param.ParameterName <- sprintf "@p%d" i
+            param.ParameterName <- formatterForMap i (positionalParameterName i)
             param.Value <- p
             cmd.Parameters.Add param |> ignore
         values |> Seq.iteri createParam
