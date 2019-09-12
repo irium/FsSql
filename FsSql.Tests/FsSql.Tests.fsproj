@@ -1,10 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <AssemblyName>FsSql.Tests</AssemblyName>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RuntimeFrameworkVersion>2.0.0</RuntimeFrameworkVersion>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Include="prelude.fs" />
     <Compile Include="Tests.fs" />
@@ -13,22 +17,8 @@
     <Compile Include="main.fs" />
     <None Include="Samples.fsx" />
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Expecto" Version="5.1.2" />
-    <PackageReference Include="Expecto.VisualStudio.TestAdapter" Version="6.0.1" />
-    <PackageReference Include="FSharp.Collections.ParallelSeq" Version="1.0.2" />
-    <PackageReference Include="FSharpx.Collections" Version="1.17.0" />
-    <PackageReference Include="System.Data.SQLite" Version="1.0.106" Condition="'$(OS)' == 'Windows_NT'" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\FsSql\FsSql.fsproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Update="FSharp.Core" Version="4.3.0" />
-    <PackageReference Update="System.ValueTuple" Version="4.4.0" />
-  </ItemGroup>
-
+  <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

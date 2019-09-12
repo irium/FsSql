@@ -1,0 +1,9 @@
+Microsoft.NETCore.App
+Expecto
+YoloDev.Expecto.TestSdk
+Microsoft.NET.Test.Sdk
+FSharp.Core
+System.Data.SQLite
+System.ValueTuple
+FSharp.Collections.ParallelSeq
+FSharpx.Collections

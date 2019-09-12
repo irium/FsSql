@@ -2,8 +2,18 @@ source https://api.nuget.org/v3/index.json
 storage:none
 
 nuget FSharp.Core 4.3.4
+nuget System.Data.SqlClient 4.4.3
+nuget System.Data.SQLite 1.0.108
+nuget System.ValueTuple >= 4.5.0 rc
+nuget FSharp.Collections.ParallelSeq
+nuget FSharpx.Collections >= 2.0.0 beta
+clitool Microsoft.DotNet.Watcher.Tools 2.0
+nuget Microsoft.NETCore.App 2.0.0
+nuget Expecto 8.0
+nuget YoloDev.Expecto.TestSdk 0.5
+nuget Microsoft.NET.Test.Sdk 15.7
 
 group build
   source https://api.nuget.org/v3/index.json
-  nuget FAKE
+  nuget FAKE < 5.0.0
   github fsharp/FAKE modules/Octokit/Octokit.fsx
