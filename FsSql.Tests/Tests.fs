@@ -34,10 +34,15 @@ open FSharpx.Collections
 
 let P = Sql.Parameter.make
 
-let createConnection() =
-    let conn = new SQLiteConnection("Data Source=:memory:;Version=3;New=True")
+let private inMemoryDbCreationLock = obj()
+
+let _createConnection() =
+    let conn = new SQLiteConnection("Data Source=:memory:;New=True;")
     conn.Open()
     conn :> IDbConnection
+
+let createConnection() =
+    lock inMemoryDbCreationLock _createConnection
 
 let createPersistentConnection() =
     let conn = new SQLiteConnection("Data Source=test.db;Version=3;New=True;Pooling=false;Max Pool Size=0;")

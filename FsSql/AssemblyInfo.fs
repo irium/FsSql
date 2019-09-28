@@ -4,16 +4,16 @@ open System.Reflection
 
 [<assembly: AssemblyTitleAttribute("FsSql")>]
 [<assembly: AssemblyProductAttribute("FsSql")>]
-[<assembly: AssemblyCopyrightAttribute("Copyright Mauricio Scheffer © 2011-2015 & irium © 2018")>]
+[<assembly: AssemblyCopyrightAttribute("Copyright Mauricio Scheffer © 2011-2015 & irium © 2018-2019")>]
 [<assembly: AssemblyDescriptionAttribute("Functional ADO.NET for F#")>]
-[<assembly: AssemblyVersionAttribute("3.0.1")>]
-[<assembly: AssemblyFileVersionAttribute("3.0.1")>]
+[<assembly: AssemblyVersionAttribute("3.1.0")>]
+[<assembly: AssemblyFileVersionAttribute("3.1.0")>]
 do ()
 
 module internal AssemblyVersionInformation =
     let [<Literal>] AssemblyTitle = "FsSql"
     let [<Literal>] AssemblyProduct = "FsSql"
-    let [<Literal>] AssemblyCopyright = "Copyright Mauricio Scheffer © 2011-2015 & irium © 2018"
+    let [<Literal>] AssemblyCopyright = "Copyright Mauricio Scheffer © 2011-2015 & irium © 2018-2019"
     let [<Literal>] AssemblyDescription = "Functional ADO.NET for F#"
-    let [<Literal>] AssemblyVersion = "3.0.1"
-    let [<Literal>] AssemblyFileVersion = "3.0.1"
+    let [<Literal>] AssemblyVersion = "3.1.0"
+    let [<Literal>] AssemblyFileVersion = "3.1.0"
