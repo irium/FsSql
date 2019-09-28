@@ -12,7 +12,7 @@ let authors = "Mauricio Scheffer & irium"
 let owners = "irium (formerly Mauricio Scheffer)"
 let projectUrl = "https://github.com/irium/FsSql"
 let licenceUrl = "http://www.apache.org/licenses/LICENSE-2.0"
-let copyright = "Copyright Mauricio Scheffer \169 2011-2015 & irium \169 2018"
+let copyright = "Copyright Mauricio Scheffer \169 2011-2015 & irium \169 2018-2019"
 
 let dotnetcliVersion = DotNetCli.GetDotNetSDKVersionFromGlobalJson()
 

@@ -14,3 +14,4 @@ FsSql.userprefs
 .fake/*
 paket.restore.cached
 paket-files/*
+.vs/*
